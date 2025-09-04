@@ -1,0 +1,60 @@
+// src/styles/components/_payment-list.scss
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+
+.payments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacer;
+  margin-top: $spacer;
+
+  @include media(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media(xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.payment-card-body {
+  flex: 1;
+
+  p {
+    margin: 0.25rem 0;
+    font-size: $font-size-md;
+
+    strong {
+      color: $heading-color;
+    }
+  }
+}
+
+.payment-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $spacer-sm;
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $white-color;
+    background-color: $primary-color;
+    border-radius: $radius-md;
+
+    &:hover {
+      background-color: $primary-700;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: $gray-400;
+    }
+  }
+
+  .muted {
+    font-size: $font-size-sm;
+    color: $muted-color;
+  }
+}

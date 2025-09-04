@@ -3,118 +3,112 @@
 
 .badge {
   display: inline-flex;
-  gap: 0.4rem;
+  gap: 0.35rem;
   align-items: center;
   padding: 0.35rem 0.75rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: $white-color;
   border-radius: $radius-sm;
   box-shadow: $box-shadow-sm;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
+  transition: transform 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
   }
 
-  /* ──────────────── 🏠 Типи житла ──────────────── */
-  &.badge-type-house {
-    background-color: $badge-house;
+  /* ─────────── Типи житла ─────────── */
+  &-type-house {
+    background: $badge-house;
   }
 
-  &.badge-type-apartment {
-    background-color: $badge-apartment;
+  &-type-apartment {
+    background: $badge-apartment;
   }
 
-  &.badge-type-hotel {
-    background-color: $badge-hotel;
+  &-type-hotel {
+    background: $badge-hotel;
   }
 
-  &.badge-type-vacation-home {
-    background-color: $badge-vacation-home;
+  &-type-vacation-home {
+    background: $badge-vacation-home;
   }
 
-  &.badge-type-cottage {
-    background-color: $badge-cottage;
+  &-type-hostel {
+    background: $badge-hostel;
   }
 
-  &.badge-type-hostel {
-    background-color: $badge-hostel;
+  &-type-cottage {
+    background: $badge-cottage;
   }
 
-  &.badge-type {
-    background-color: $primary-700;
+  /* ─────────── Зручності ─────────── */
+  &-amenity-wifi {
+    background: $badge-wifi;
   }
 
-  /* ──────────────── 📐 Розмір ──────────────── */
-  &.badge-size {
-    background-color: $badge-hostel;
+  &-amenity-kitchen {
+    background: $badge-kitchen;
   }
 
-  /* ──────────────── 🔧 Зручності ──────────────── */
-  &.badge-amenity {
-    font-size: 0.85rem;
-
-    &.wifi {
-      background-color: $badge-wifi;
-    }
-
-    &.kitchen {
-      background-color: $badge-kitchen;
-    }
-
-    &.ac {
-      background-color: $badge-ac;
-    }
-
-    &.parking {
-      background-color: $badge-parking;
-    }
-
-    &.washer {
-      background-color: $badge-washer;
-    }
-
-    &.other {
-      background-color: $badge-other;
-    }
+  &-amenity-ac {
+    background: $badge-ac;
   }
 
-  /* ──────────────── 📌 Статуси бронювань ──────────────── */
-  &.badge-status {
-    &.pending {
-      background-color: $warning-color;
-    }
+  &-amenity-parking {
+    background: $badge-parking;
+  }
 
-    &.confirmed {
-      background-color: $success-color;
-    }
+  &-amenity-washer {
+    background: $badge-washer;
+  }
 
-    &.canceled {
-      background-color: $danger-color;
-    }
+  &-amenity-other {
+    background: $badge-other;
+  }
 
-    &.expired {
-      background-color: $gray-600;
-    }
+  /* ─────────── Статуси ─────────── */
+  &-status-pending {
+    background: $warning-color;
+  }
 
-    /* ──────────────── 🏢 Статуси житла ──────────────── */
-    &.requires-verification {
+  &-status-confirmed {
+    background: $success-color;
+  }
+
+  &-status-paid {
+    background: $success-color;
+  }
+
+  &-status-permitted {
+    background: $success-color;
+  }
+
+  &-status-canceled {
+    background: $danger-color;
+  } // ✅ тільки 1 L
+  &-status-rejected {
+    background: $danger-color;
+  }
+
+  &-status-expired {
+    background: $gray-600;
+  }
+
+  &-status-requires-verification {
+    color: $text-color;
+    background: $warning-color;
+
+    /* fallback */
+    &-status-unknown {
       color: $white-color;
-      background-color: $warning-color;
+      background: $gray-400;
     }
+  }
 
-    &.permitted {
-      color: $white-color;
-      background-color: $success-color;
-    }
-
-    &.rejected {
-      color: $white-color;
-      background-color: $danger-color;
-    }
+  /* ─────────── Розмір (спальні) ─────────── */
+  &-size {
+    background: $badge-hostel;
   }
 }
 

@@ -1,5 +1,4 @@
 // src/pages/User/MyBookings.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -82,7 +81,6 @@ const MyBookings = () => {
         message: 'Бронювання успішно скасовано!',
         type: 'success'
       });
-      // ✅ Оновлюємо стан, щоб прибрати скасоване бронювання
       setEnrichedBookings((prev) => prev.filter((b) => b.id !== bookingId));
     } catch (err) {
       setNotification({
@@ -90,6 +88,12 @@ const MyBookings = () => {
         type: 'danger'
       });
     }
+  };
+
+  // ✅ Оплата
+  const handlePayBooking = (bookingId) => {
+    console.log('🟢 Оплата bookingId:', bookingId);
+    navigate(`/payment/${bookingId}`);
   };
 
   if (status === 'loading') {
@@ -125,6 +129,7 @@ const MyBookings = () => {
                 key={booking.id}
                 booking={booking}
                 onCancel={handleCancelBooking}
+                onPay={handlePayBooking} // 🔹 тепер передаємо оплату
               />
             ))}
           </div>

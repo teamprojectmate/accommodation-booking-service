@@ -1,17 +1,18 @@
+// src/pages/User/Payment.jsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createPayment } from '../../store/slices/paymentsSlice';
 import Notification from '../../components/Notification';
-import '../../styles/payment.scss';
+import '../../styles/components/_payment-checkout.scss';
 
 const Payment = () => {
   const dispatch = useDispatch();
   const { bookingId } = useParams();
-  const { payment, status, error } = useSelector((s) => s.payments);
+  const { payment, createStatus, error } = useSelector((s) => s.payments);
 
   const handlePay = () => {
-    dispatch(createPayment({ bookingId, paymentType: 'CARD' }));
+    dispatch(createPayment({ bookingId, paymentType: 'PAYMENT' }));
   };
 
   useEffect(() => {
@@ -22,20 +23,32 @@ const Payment = () => {
 
   return (
     <div className="payment-page">
-      <div className="payment-card">
+      <div className="payment-card payment-checkout">
         <h2 className="payment-title">Оплата бронювання</h2>
         <p className="payment-subtitle">
-          Будь ласка, натисніть кнопку нижче, щоб перейти до захищеної сторінки оплати.
+          Будь ласка, перевірте інформацію нижче та натисніть кнопку для переходу на
+          захищену сторінку оплати.
         </p>
 
         {error && <Notification type="danger" message={error} />}
 
+        <div className="payment-info">
+          <p>
+            <strong>ID бронювання:</strong> {bookingId}
+          </p>
+          {payment?.amountToPay && (
+            <p>
+              <strong>Сума до сплати:</strong> {payment.amountToPay} ₴
+            </p>
+          )}
+        </div>
+
         <button
-          className="payment-button"
+          className="btn btn-primary btn-lg"
           onClick={handlePay}
-          disabled={status === 'loading'}
+          disabled={createStatus === 'loading'}
         >
-          {status === 'loading' ? 'Обробка...' : 'Оплатити'}
+          {createStatus === 'loading' ? 'Обробка...' : 'Оплатити'}
         </button>
       </div>
     </div>

@@ -1,15 +1,13 @@
 // src/components/StatusBadge.jsx
 import React from 'react';
-import { getStatusLabel } from '../utils/statusLabels';
+import { mapStatus } from '../utils/translations';
 
 const StatusBadge = ({ status, floating = false }) => {
-  const label = getStatusLabel(status);
+  const { label, slug } = mapStatus(status);
 
   return (
-    <span
-      className={`badge badge-status ${label.className} ${floating ? 'floating' : ''}`}
-    >
-      {label.text}
+    <span className={`badge badge-status-${slug} ${floating ? 'floating' : ''}`}>
+      {label}
     </span>
   );
 };

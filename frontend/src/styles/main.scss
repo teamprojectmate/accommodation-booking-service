@@ -42,7 +42,10 @@
 @use './components/notifications';
 @use './components/offers';
 @use './components/pagination';
+@use './components/payment-card';
+@use './components/payment-checkout';
 @use './components/payment';
+@use './components/payments-list';
 @use './components/profile';
 @use './components/searchForm';
 @use './components/status-select';

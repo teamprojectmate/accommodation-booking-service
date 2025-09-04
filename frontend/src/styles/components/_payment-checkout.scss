@@ -1,0 +1,70 @@
+// src/styles/components/_payment-checkout.scss
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+
+.payment-page {
+  @include flex-center;
+
+  min-height: calc(100vh - #{$z-header} - 5rem);
+  padding: 2rem;
+}
+
+.payment-card.payment-checkout {
+  width: 100%;
+  max-width: $max-width-sm;
+  padding: 2rem;
+  text-align: center;
+  background: $surface-color;
+  border-radius: $radius-lg;
+
+  @include card-shadow;
+
+  h2 {
+    @include heading($font-size-xl, 700, $heading-color);
+
+    margin-bottom: $spacer-sm;
+  }
+
+  .payment-subtitle {
+    margin-bottom: $spacer;
+    font-size: $font-size-base;
+    color: $muted-color;
+  }
+
+  .payment-info {
+    margin-bottom: $spacer;
+
+    p {
+      margin: 0.25rem 0;
+      font-size: $font-size-md;
+
+      strong {
+        color: $heading-color;
+      }
+    }
+  }
+
+  .payment-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: $font-size-md;
+    font-weight: 600;
+    color: $white-color;
+    background: linear-gradient(135deg, $primary-color, $primary-700);
+    border-radius: $radius-md;
+
+    @include button-shadow-transition;
+
+    &:hover {
+      background: $primary-600;
+      transform: translateY(-1px);
+
+      @include button-shadow-hover;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: $gray-400;
+    }
+  }
+}

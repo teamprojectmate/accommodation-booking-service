@@ -11,6 +11,7 @@ const fallbackImage = '/no-image.png';
 const BookingCard = ({
   booking,
   onCancel,
+  onPay, // 🔹 додали
   onStatusChange,
   onDelete,
   showAdminControls = false
@@ -81,7 +82,12 @@ const BookingCard = ({
                 Деталі
               </Link>
               {booking.status === 'PENDING' && (
-                <button className="btn btn-warning">Оплатити</button>
+                <button
+                  className="btn btn-warning"
+                  onClick={() => onPay(booking.id)} // 🔹 тепер викликаємо onPay
+                >
+                  Оплатити
+                </button>
               )}
               {booking.status !== 'CANCELED' && (
                 <button className="btn btn-danger" onClick={() => onCancel(booking.id)}>

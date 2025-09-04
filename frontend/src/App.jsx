@@ -39,6 +39,7 @@ const BookingDetails = lazy(() => import('./pages/BookingDetails.jsx'));
 const Payment = lazy(() => import('./pages/User/Payment.jsx'));
 const PaymentSuccess = lazy(() => import('./pages/User/PaymentSuccess.jsx'));
 const PaymentCancel = lazy(() => import('./pages/User/PaymentCancel.jsx'));
+const PaymentsList = lazy(() => import('./pages/User/PaymentsList.jsx')); // ✅ нове
 
 // Lazy-loaded Admin
 const AdminLayout = lazy(() => import('./components/AdminLayout.jsx'));
@@ -66,7 +67,6 @@ import authService from './api/auth/authService';
 function App() {
   const dispatch = useDispatch();
 
-  // підтягування профілю з localStorage при старті
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('auth'));
     if (stored?.token) {
@@ -86,7 +86,6 @@ function App() {
           );
         })
         .catch(() => {
-          // якщо токен не валідний
           localStorage.removeItem('auth');
           localStorage.removeItem('userProfile');
         });
@@ -208,7 +207,7 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <PageWrapper title="Оплата успішна">
-                      <PaymentSuccess />
+                      <PaymentSuccess /> {/* ✅ редірект на /my-payments */}
                     </PageWrapper>
                   </ProtectedRoute>
                 }
@@ -219,6 +218,16 @@ function App() {
                   <ProtectedRoute>
                     <PageWrapper title="Оплату скасовано">
                       <PaymentCancel />
+                    </PageWrapper>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/my-payments"
+                element={
+                  <ProtectedRoute>
+                    <PageWrapper title="Мої платежі">
+                      <PaymentsList />
                     </PageWrapper>
                   </ProtectedRoute>
                 }

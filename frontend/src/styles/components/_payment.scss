@@ -1,51 +1,40 @@
 // src/styles/components/_payment.scss
-@use '../abstract/mixins' as *;
 @use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
 
-.payment-page {
-  @include flex-center;
+// Badge стилі
+.badge {
+  padding: 0.25rem 0.75rem;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  border-radius: $radius-md;
 
-  min-height: calc(100vh - #{$z-header} - 5rem);
-  padding: 2rem;
+  &.bg-success {
+    color: $white-color;
+    background: $success-color;
+  }
+
+  &.bg-warning {
+    color: $white-color;
+    background: $warning-color;
+  }
 }
 
+// Картки (базовий стиль)
 .payment-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: $max-width-sm;
-  padding: 2rem;
-  text-align: center;
-  background-color: $surface-color;
+  justify-content: space-between;
+  padding: $spacer;
+  background: $surface-color;
   border-radius: $radius-lg;
 
   @include card-shadow;
-}
-
-.payment-title {
-  @include heading($font-size-xl, 700, $heading-color);
-
-  margin-bottom: $spacer-sm;
-}
-
-.payment-subtitle {
-  margin-bottom: $spacer;
-  font-size: $font-size-base;
-  color: $muted-color;
-}
-
-.payment-button {
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  color: $white-color;
-  background-color: $primary-color;
-  border-radius: $radius-md;
-  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: $primary-700;
+    @include card-shadow-hover;
+
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
   }
 }

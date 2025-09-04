@@ -1,0 +1,82 @@
+// src/styles/components/_payment-card.scss
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: $spacer;
+  background: $surface-color;
+  border-radius: $radius-lg;
+  transition: all 0.25s ease;
+
+  @include card-shadow-transition;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    @include card-shadow-hover;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacer-sm;
+
+    h4 {
+      font-size: $font-size-lg;
+      font-weight: 700;
+      color: $heading-color;
+    }
+
+    .badge {
+      padding: 0.25rem 0.75rem;
+      font-size: $font-size-sm;
+      font-weight: 600;
+      border-radius: $radius-md;
+
+      &.paid {
+        color: $white-color;
+        background: $success-color;
+      }
+
+      &.pending {
+        color: $white-color;
+        background: $warning-color;
+      }
+    }
+  }
+
+  &-body {
+    flex: 1;
+    font-size: $font-size-md;
+    line-height: 1.5;
+
+    p {
+      margin: 0.25rem 0;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $spacer-sm;
+
+    /* 🔹 кнопки більше не стилізуємо тут, лише контейнер */
+    .paid-label {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: $font-size-sm;
+      color: $success-color;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

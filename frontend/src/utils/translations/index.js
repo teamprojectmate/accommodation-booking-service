@@ -54,16 +54,19 @@ export const amenityTranslations = {
 };
 
 // -----------------------------
-// 📌 Статуси бронювань + житла
+// 📌 Статуси
 // -----------------------------
 export const statusTranslations = {
-  // 🔹 бронювання
+  // 🔹 Платежі
   PENDING: { label: 'Очікує', color: '#f59e0b', slug: 'pending' },
+  PAID: { label: 'Оплачено', color: '#16a34a', slug: 'paid' },
+
+  // 🔹 Бронювання
   CONFIRMED: { label: 'Підтверджено', color: '#16a34a', slug: 'confirmed' },
   CANCELED: { label: 'Скасовано', color: '#dc2626', slug: 'canceled' },
   EXPIRED: { label: 'Прострочено', color: '#9ca3af', slug: 'expired' },
 
-  // 🔹 житло
+  // 🔹 Житло
   REQUIRES_VERIFICATION: {
     label: 'Очікує перевірки',
     color: '#f59e0b',
@@ -71,6 +74,18 @@ export const statusTranslations = {
   },
   PERMITTED: { label: 'Дозволено', color: '#16a34a', slug: 'permitted' },
   REJECTED: { label: 'Відхилено', color: '#dc2626', slug: 'rejected' }
+};
+
+// Мапер
+export const mapStatus = (status = '') => {
+  const normalized = status?.toUpperCase();
+  return (
+    statusTranslations[normalized] || {
+      label: status,
+      color: '#6b7280',
+      slug: 'unknown'
+    }
+  );
 };
 
 // -----------------------------
@@ -92,11 +107,4 @@ export const mapAmenity = (amenity = '') => {
   }
 
   return { label: amenity, icon: '✨', slug: 'other', color: '#6b7280' };
-};
-
-export const mapStatus = (status = '') => {
-  const normalized = status?.toUpperCase();
-  return (
-    statusTranslations[normalized] || { label: status, color: '#6b7280', slug: 'unknown' }
-  );
 };
